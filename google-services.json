@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "629457100364",
+    "project_id": "expo-d46ea",
+    "storage_bucket": "expo-d46ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629457100364:android:0c5123e5ba2dbe7f851ee9",
+        "android_client_info": {
+          "package_name": "com.rizky404.GoogleExpo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629457100364-bnvt6bqln64t5h8ol2fuft0k2a6dahl3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rizky404.GoogleExpo",
+            "certificate_hash": "8149f8d6e7b4a38002adb895cde40b1aa567cdf2"
+          }
+        },
+        {
+          "client_id": "629457100364-brulnk2n6e9r9d1rm7kqufvgo5holqm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rizky404.GoogleExpo",
+            "certificate_hash": "94f2f1fd5d59b33f30bdc1aa1ea65fd20a53a9b0"
+          }
+        },
+        {
+          "client_id": "629457100364-00gv4u4ui39mt3b8hh7rul7aofs0pto6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE17cyA9O3xCJyxHNMTGmnD_TMud4Wio8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629457100364-00gv4u4ui39mt3b8hh7rul7aofs0pto6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
