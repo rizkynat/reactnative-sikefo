@@ -1,0 +1,8 @@
+export const Hijau='#074521'
+export const Abu='#939393'
+export const Hitam='#000000'
+export const Putih='#ffffff'
+export const Buttonw='#E4EFE7'
+export const Pastel='#EEEEEEE' 
+export const Abu2='#D9D9D9'
+export const Abu3='#E9E9E9'

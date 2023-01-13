@@ -11,6 +11,7 @@ import RoundedButtonLogo from './decorations/RoundedButtonLogo';
 import Beranda from './Beranda';
 
 
+
 export default function Login() {
   // set initializing
   const [initializing, setInitializing] = useState(true);

@@ -5,8 +5,11 @@ import Constants from 'expo-constants';
 
 // or any pure javascript modules available in npm
 import { IconButton, MD3Colors, Button, Menu, Divider, Provider } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Beranda(props) {
+  const navigation = useNavigation();
+
   const [visible, setVisible] = React.useState(false);
 
   const openMenu = () => setVisible(true);
@@ -30,8 +33,8 @@ console.log(visible)
             size={20}
             onPress={openMenu}
           />}>
-          <Menu.Item onPress={() => {}} title="Profile" />
-          <Menu.Item onPress={() => {}} title="Tentang" />
+          <Menu.Item onPress={() => navigation.navigate('Profile', {user: props.user})} title="Profile" />
+          <Menu.Item onPress={() => navigation.navigate('About')} title="Tentang" />
           <Menu.Item onPress={props.signOut} title="Logout" />
         </Menu>
       </View>
@@ -48,7 +51,7 @@ console.log(visible)
      </View>
      <View style={styles.button}>
       <View style={styles.button_content}>
-        <TouchableOpacity style = {styles.btn_kas}>
+        <TouchableOpacity style = {styles.btn_kas} onPress={() => navigation.navigate('MenuListKas')}>
               <ImageBackground source={require('./../../assets/kas.png')} resizeMode="cover" style={styles.bg_button}>
                 <Image source={require('./../../assets/kas-icon.png')} style = {styles.icon_kas}/>
                 <Text style = {styles.txt_btn_kas}>
@@ -58,7 +61,7 @@ console.log(visible)
         </TouchableOpacity>
       </View>
       <View style={styles.button_content}>
-        <TouchableOpacity style = {styles.btn_keuangan}>
+        <TouchableOpacity style = {styles.btn_keuangan} onPress={() => navigation.navigate('MenuListKeuangan')}>
             <ImageBackground source={require('./../../assets/keuangan.png')} resizeMode="cover" style={styles.bg_button}>
               <Image source={require('./../../assets/keuangan-icon.png')} style = {styles.icon_keuangan}/>
               <Text style = {styles.txt_btn_keuangan}>
