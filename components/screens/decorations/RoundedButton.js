@@ -7,7 +7,7 @@ const RoundedButton = ({label, onPress}) => {
         style={{marginTop: 70, alignItems: 'center'}}>
             <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={onPress}>
+            onPress={() => {onPress}}>
                 <Text style={styles.ButtonText}>
                     {label}
                 </Text>

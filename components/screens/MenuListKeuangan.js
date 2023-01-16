@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity, CheckBox, FlatList } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { IconButton, MD3Colors, Button, Menu, Divider, Provider, ActivityIndicator } from 'react-native-paper';
+import { BASE_URL } from './Config';
 
 const bulan = [
     { label: 'Semua', value: 'Semua' },
@@ -34,7 +35,7 @@ export default function MenuListKeuangan(props) {
   
     const getDataKeuangan = async () => {
        try {
-        const response = await fetch('http://49e7-112-215-239-84.ngrok.io/api/keuangan');
+        const response = await fetch(`${BASE_URL}/api/keuangan`);
         const json = await response.json();
         setData(json.data);
         console.log(json.data)

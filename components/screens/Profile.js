@@ -1,142 +1,176 @@
 import * as React from 'react';
-import { View, Image, Text, ScrollView } from 'react-native';
-import Login from './Login';
-import {Hitam, Abu} from '../../components/screens/components/Warna'
-
+import { View, Image, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 export default function Profile(){
+  
+  const [user, setUser] = useState([]);
+
+  const navigation = useNavigation()
+  const getUser = async () => {
+    try {
+      const savedUser = await AsyncStorage.getItem("userInfo");
+      const currentUser = JSON.parse(savedUser);
+      console.log("Ini data user ketika masuk Profile:")
+      console.log(currentUser);
+      global.dataUser = await currentUser
+      setUser(currentUser)
+      console.log(global.dataUser)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  React.useEffect(() => {
+    getUser();
+
+  }, [])
+  const data = user
+  console
+  console.log(data)
     return (
-        <View>
-          <Image source={require} style={{
-            marginLeft:-17,
-            marginTop:-40,
-            width:430,
-            height:243,
-            }}/>
-            <View>
-              <Image source={require('./../../assets/emma.png')} style={{
-                marginLeft:128,
-                marginTop:-170,
-                width:141,
-                height:143,
-                }}/>
-            </View>
-            <View>
-              <Text style={{
-                marginLeft: 90,
-                marginTop: 16,
-                fontFamily: 'Arial',
-                color: Hitam,
-                fontWeight: 'bold',
-                fontSize: 24,
-                }}>Nurul Putri Zaen</Text>
-            </View>
-            
-            <View>
-             <Image source={require('./../../assets/gmailProfile.png')} style={{
-                marginLeft:88,
-                marginTop:8,
-                width:16,
-                height:16,
-                }}/>
-              <Text style={{
-                marginLeft: 110,
-                marginTop: -16,
-                fontFamily: 'Arial',
-                color: Hitam,
-                fontWeight: 'light',
-                fontSize: 12,
-                }}>nurul20si@mahasiswa.pcr.ac.id
-              </Text> 
-              <Text style={{
-                marginLeft: 16,
-                marginTop: 50,
-                fontFamily: 'Arial',
-                color: Abu,
-                fontSize: 14,
-                }}>Pengaturan Akun
-                </Text>   
-                </View>
-              <View>
-
-            <View>
-              <Image source={require('./../../assets/panah.png')} style={{
-                marginLeft:360,
-                marginTop:20,
-                width:16,
-                height:16,
-                }}/>
-              <Text style={{
-                marginLeft: 25,
-                marginTop: -20,
-                fontFamily: 'Arial',
-                color: Hitam,
-                fontWeight: 'light',
-                fontSize: 13,
-                }}>Informasi Akun</Text>
-
-              <Image source={require('./../../assets/garis.png')} style={{
-               marginLeft:25,
-                marginTop:20,
-                width:350,
-                height:1,
-                }}/>
-
-            </View>
-
-             <View>
-              <Image source={require('./../../assets/panah.png')} style={{
-                marginLeft:360,
-                marginTop:20,
-                width:16,
-                height:16,
-                }}/>
-              <Text style={{
-                marginLeft: 25,
-                marginTop: -20,
-                fontFamily: 'Arial',
-                color: Hitam,
-                fontWeight: 'light',
-                fontSize: 13,
-                }}>tentang</Text>
-
-              <Image source={require('./../../assets/garis.png')} style={{
-               marginLeft:25,
-                marginTop:20,
-                width:350,
-                height:1,
-                }}/>
-
-            </View>
-             <View>
-              <Image source={require('./../../assets/panah.png')} style={{
-                marginLeft:360,
-                marginTop:20,
-                width:16,
-                height:16,
-                }}/>
-              <Text style={{
-                marginLeft: 25,
-                marginTop: -20,
-                fontFamily: 'Arial',
-                color: Hitam,
-                fontWeight: 'light',
-                fontSize: 13,
-                }}>Keluar</Text>
-
-              <Image source={require('./../../assets/garis.png')} style={{
-               marginLeft:25,
-                marginTop:20,
-                width:350,
-                height:1,
-                }}/>
-
-            </View>
-                  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                   
-                  </ScrollView>
-              </View>
+      <View style={styles.main}>
+      <View style={styles.container}>
+        <View style={styles.profile}>
+          <Image source={{uri: `${data.picture_url}`}} style={{
+            width: 148,
+            height: 154,
+            borderRadius: 100,
+          }} />
+        </View>
+        <View style={styles.content}>
+          <Text style={{
+            textAlign: 'center',
+            marginTop: 23,
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: 20,
+          }}>{data.nama_lengkap}</Text>
+          <View style={styles.email}>
+            <Image source={require('../../assets/gmailProfile.png')} style={{
+              marginTop: 12,
+              marginRight: 5,
+              width: 16,
+              height: 16,
+            }} />
+            <Text style={{
+              textAlign: 'center',
+              marginTop: 10,
+              color: 'black',
+              fontSize: 12,
+              paddingBottom: 22,
+            }}>{data.email}</Text>
+          </View>
+        </View>
       </View>
-
-    );
+      <View style={styles.pengaturan}>
+        <Text style={{
+          width: 380,
+          marginTop: 14,
+          color: '#999999',
+          fontSize: 13,
+          letterSpacing: 0.76,
+          textAlign: 'left',
+          paddingLeft: 38
+        }}>Pengaturan Akun</Text>
+          <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('InformasiAkun')}>
+            <Text style={{
+              color: 'black',
+              fontSize: 14,
+              letterSpacing: 0.15,
+              textAlign: 'left',
+              marginRight:18,
+              
+              paddingBottom:12,
+            }}>Informasi Akun</Text>
+            <Image source={require('../../assets/panah.png')} style={{
+              width: 7.41,
+              height: 12,
+              marginLeft:240,
+              marginTop:6,
+            }} />
+          </TouchableOpacity>
+                    <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('About')}>
+            <Text style={{
+              color: 'black',
+              fontSize: 14,
+              letterSpacing: 0.15,
+              textAlign: 'left',
+              marginRight:18,
+              paddingBottom:12,
+            }}>Tentang</Text>
+            <Image source={require('../../assets/panah.png')} style={{
+              width: 7.41,
+              height: 12,
+              marginLeft:289,
+              marginTop:6,
+              paddingBottom:12,
+            }} />
+          </TouchableOpacity>
+                    <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('Logout')} >
+            <Text style={{
+              color: 'black',
+              fontSize: 14,
+              letterSpacing: 0.15,
+              textAlign: 'left',
+              marginRight:18,
+              paddingBottom:12,
+            }}>Keluar</Text>
+            <Image source={require('../../assets/panah.png')} style={{
+              width: 7.41,
+              height: 12,
+              marginLeft:301,
+              marginTop:6,
+            }} />
+          </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  main: {
+    backgroundColor: '#FFFFFF',
+  },
+
+  container: {
+    alignItems: 'center',
+  },
+
+  content: {
+    width: 428,
+    flexDirection: 'column',
+    borderBottomColor: '#D1D1D6',
+    borderBottomWidth: StyleSheet.hairlineWidth
+  },
+
+  profile: {
+    marginTop: 57,
+    alignItems: 'center',
+  },
+
+  email: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+
+  pengaturan: {
+    width: 380,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  navigation:{
+    
+    alignSelf: 'center',
+    marginTop: 24,
+    width: 380,
+    marginLeft:38,
+    flexDirection: 'row',
+    borderBottomColor: '#D1D1D6',
+    borderBottomWidth: StyleSheet.hairlineWidth
+  }
+});
+
+
