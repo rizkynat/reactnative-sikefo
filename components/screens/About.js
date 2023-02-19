@@ -36,7 +36,9 @@ export default function About() {
 }
 
 const styles = StyleSheet.create({
-  main: {
+  main: {    
+    width: '100%',
+    height: '100%',
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
   },

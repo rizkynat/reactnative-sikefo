@@ -89,13 +89,29 @@ export default function MenuListKeuangan(props) {
             <FlatList
             data={listFilter}
             keyExtractor={({ id_kas }, index) => id_kas}
-            renderItem={({ item }) => (
-              <View style={styles.data}>
-                <Image  source={require('./../../assets/arrow_in.png')} style={styles.icon_in} />
-                <Text style={styles.text_desc}>{item.deskripsi} </Text>
-                <Text style={styles.text_nom}>Rp.{rupiah(item.nominal_keuangan)}</Text>
-              </View>
-            )}
+            renderItem={({ item }) => {
+              if(item.status == 'Uang Masuk'){  
+                return(            
+                  <View style={styles.data}>
+                  <Image  source={require('./../../assets/arrow_left.png')} style={styles.icon_in} />
+                  <Text style={styles.text_desc}>{item.deskripsi} </Text>
+                  <Text style={styles.text_nom_masuk}>Rp.{rupiah(item.nominal_keuangan)}</Text>
+                  </View>
+
+                )
+              }if (item.status == 'Uang Keluar') { 
+                return(            
+                  <View style={styles.data}>
+                  <Image  source={require('./../../assets/arrow_right.png')} style={styles.icon_in} />
+                  <Text style={styles.text_desc}>{item.deskripsi} </Text>
+                  <Text style={styles.text_nom_keluar}>Rp.{rupiah(item.nominal_keuangan)}</Text>
+                  </View>
+                )
+                
+              } else {
+                
+              }
+            }}
           />
           </View>
         )}
@@ -134,10 +150,16 @@ const styles = StyleSheet.create({
         height: 30,
         marginVertical:7.5
 
-    },
-    text_nom: {
+    },text_nom_masuk: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      color:'#20C997',
+      alignSelf:'center'
+  },
+    text_nom_keluar: {
         fontSize: 14,
         fontWeight: 'bold',
+        color:'#FF0032',
         alignSelf:'center'
     },dropdown: {
         height: 50,

@@ -66,8 +66,6 @@ export default function Login() {
       await AsyncStorage.setItem("user", JSON.stringify(value));
       const savedUser = await AsyncStorage.getItem("user");
       const currentUser = JSON.parse(savedUser);
-      console.log("-----Ini store login input-----")
-      console.log(currentUser)
     } catch (error) {
       console.log(error);
     }
@@ -79,8 +77,6 @@ export default function Login() {
       await AsyncStorage.setItem("user", JSON.stringify(value));
       const savedUser = await AsyncStorage.getItem("user");
       const currentUser = JSON.parse(savedUser);
-      console.log("-----Ini store login google-----")
-      console.log(currentUser)
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +86,6 @@ export default function Login() {
     try {
       const savedUser = await AsyncStorage.getItem("user");
       const currentUser = JSON.parse(savedUser);
-      console.log("Ini data user ketika logout: " + currentUser);
     } catch (error) {
       console.log(error);
     }

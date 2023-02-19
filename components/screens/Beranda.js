@@ -162,9 +162,12 @@ export default function Beranda(props) {
           <View style={styles.layout_summary}>
             <Text style={styles.txt_tagihan}>Summary</Text>
             <View style={styles.tagihan_content}>
-              <View style={styles.button_content}>
-                <TouchableOpacity style={styles.btn_kas}>
-                  <ImageBackground source={require('./../../assets/summary.png')} resizeMode="cover" style={styles.bg_button}>
+              <View style={styles.button_content_sum}>
+                <TouchableOpacity style={styles.btn_}>
+                  <ImageBackground source={require('./../../assets/summary.png')} resizeMode="cover" style={styles.bg_button_sum}>
+                    <Text style={styles.txt_btn_summary_label}>
+                      Uang Masuk
+                    </Text>
                     <Image source={require('./../../assets/arrow_left.png')} style={styles.icon_summary} />
                     <Text style={styles.txt_btn_summary}>
                       Rp. {rupiah(parseInt(number[0]))}
@@ -174,7 +177,10 @@ export default function Beranda(props) {
               </View>
               <View style={styles.button_content}>
                 <TouchableOpacity style={styles.btn_keuangan}>
-                  <ImageBackground source={require('./../../assets/summary.png')} resizeMode="cover" style={styles.bg_button}>
+                  <ImageBackground source={require('./../../assets/summary.png')} resizeMode="cover" style={styles.bg_button_sum}>
+                  <Text style={styles.txt_btn_summary_label}>
+                      Uang Keluar
+                    </Text>
                     <Image source={require('./../../assets/arrow_right.png')} style={styles.icon_summary} />
                     <Text style={styles.txt_btn_summary}>
                       Rp. {rupiah(parseInt(number[1]))}
@@ -201,89 +207,88 @@ export default function Beranda(props) {
                       {/*All views of Modal*/}
                       {/*Animation can be slide, slide, none*/}
                       <View style={styles.modal}>
-                        <View style={stylesDetailList.main}>
                           <View style={stylesDetailList.infromasi}>
-                            <View style={stylesDetailList.container}>
                               <Text style={{
                                 width: 380,
-                                marginTop: 14,
+                                color: 'black',
+                                fontSize: 14,
+                                textAlign: 'center',
+                                fontWeight: 'bold',
+                              }}>Rincian Pembayaran</Text>
+                              <Text style={{
+                                width: 312,
+                                marginTop: 27,
                                 color: 'black',
                                 fontSize: 13,
-                                textAlign: 'left',
-                                paddingLeft: 48,
+                                textAlign: 'left', 
                                 fontWeight: 'bold',
                               }}>Nominal</Text>
 
-                              <TextInput value={`Rp.${rupiah(parseInt(activeItem?.nominal))}`} label="Nominal"
+                              <TextInput editable={false} value={`Rp.${rupiah(parseInt(activeItem?.nominal))}`} label="Nominal"
                                 style={{
-                                  width: 380,
-                                  height: 40,
+                                  width: 312,
+                                  height: 42,
                                   borderRadius: 88,
                                   backgroundColor: '#E9E9E9',
                                   color: '#757171',
                                   paddingLeft: 23,
-                                  marginTop: 11,
+                                  marginTop: 12,
                                   fontSize: 13,
                                   fontWeight: 'light',
-                                  marginBottom: 16,
-                                  marginLeft: 35
+                                  marginBottom: 4,
                                 }} />
+
                               <Text style={{
-                                width: 380,
-                                marginTop: 14,
+                                width: 312,
+                                marginTop: 12,
                                 color: 'black',
                                 fontSize: 13,
                                 textAlign: 'left',
-                                paddingLeft: 48,
                                 fontWeight: 'bold',
                               }}>Keterangan</Text>
 
-                              <TextInput value={activeItem?.keterangan} label="Keterangan"
+                              <TextInput editable={false} value={activeItem?.keterangan} label="Keterangan"
                                 style={{
-                                  width: 380,
+                                  width: 312,
                                   height: 40,
                                   borderRadius: 88,
                                   backgroundColor: '#E9E9E9',
                                   color: '#757171',
                                   paddingLeft: 23,
-                                  marginTop: 11,
+                                  marginTop: 12,
                                   fontSize: 13,
                                   fontWeight: 'light',
-                                  marginBottom: 16,
-                                  marginLeft: 35
+                                  marginBottom: 4,
                                 }} />
                               <Text style={{
-                                width: 380,
-                                marginTop: 14,
+                                width: 312,
+                                marginTop: 12,
                                 color: 'black',
                                 fontSize: 13,
                                 textAlign: 'left',
-                                paddingLeft: 48,
                                 fontWeight: 'bold',
                               }}>Bulan</Text>
 
-                              <TextInput value={`${bulan(activeItem?.bulan)}`} label="Bulan"
+                              <TextInput editable={false} value={`${bulan(activeItem?.bulan)}`} label="Bulan"
                                 style={{
-                                  width: 380,
+                                  width: 312,
                                   height: 40,
                                   borderRadius: 88,
                                   backgroundColor: '#E9E9E9',
                                   color: '#757171',
                                   paddingLeft: 23,
-                                  marginTop: 11,
+                                  marginTop: 12,
                                   fontSize: 13,
                                   fontWeight: 'light',
-                                  marginBottom: 16,
-                                  marginLeft: 35,
+                                  marginBottom: 4,
                                 }} />
 
                               <Text style={{
-                                width: 380,
-                                marginTop: 14,
+                                width: 312,
+                                marginTop: 12,
                                 color: 'black',
                                 fontSize: 13,
                                 textAlign: 'left',
-                                paddingLeft: 48,
                                 fontWeight: 'bold',
                               }}>Bukti bayar</Text>
                               <View style={stylesDetailList.upload_content}>
@@ -296,15 +301,13 @@ export default function Beranda(props) {
                               <TouchableOpacity onPress={() => { setShowModal(!showModal) }}>
                                 <Text style={stylesDetailList.btn_bayar}>Tutup</Text>
                               </TouchableOpacity>
-                            </View>
                           </View>
-                        </View>
                       </View>
                     </Modal>
 
                     <TouchableOpacity key={key}  onPress={() => { onPress(item) }}>
                       <View  style={styles.data}>
-                        <Image source={require('./../../assets/arrow_in.png')} style={styles.icon_in} />
+                        <Image source={require('./../../assets/payment.png')} style={styles.icon_in} />
                         <Text style={styles.text_desc}>{item.keterangan} </Text>
                         <Text style={styles.text_nom}>Rp.{rupiah(item.nominal)}</Text>
                       </View>
@@ -324,15 +327,11 @@ export default function Beranda(props) {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    backgroundColor: '#FFFFFF',
-
-  }, modal: {
+  modal: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    height: 242,
-    padding: 10,
+    backgroundColor: '#FFFFFF',
+    paddingTop: 44,
   },
   text: {
     color: '#3f2949',
@@ -425,8 +424,23 @@ const styles = StyleSheet.create({
     height: 98,
   },
 
+  bg_button_sum: {
+    width: 133,
+    height: 138,
+  },
+
   btn_kas: {
     title: 'Kas',
+    borderRadius: 20,
+  },
+  button_content_sum: {
+    flexDirection: 'column',
+    paddingRight: 11,
+    paddingLeft: 11,
+  },
+  btn_sum: {
+    title: 'Kas',
+    alignContent: 'center',
     borderRadius: 20,
   },
 
@@ -443,10 +457,10 @@ const styles = StyleSheet.create({
   },
 
   icon_summary: {
-    marginTop: 20,
+    marginTop: 5,
+    alignSelf: 'center',
     width: 34,
     height: 32.64,
-    marginLeft: 53,
   },
 
   btn_keuangan: {
@@ -461,10 +475,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  txt_btn_summary: {
-    marginTop: 5,
+  txt_btn_summary_label: {
+    marginTop: 25,
+    fontSize: 12,
     textAlign: 'center',
-    color: '#FFFFFF',
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+
+  txt_btn_summary: {
+    marginTop: 10,
+    fontSize: 12,
+    textAlign: 'center',
+    color: '#000000',
     fontWeight: 'bold',
   },
 
@@ -482,8 +505,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
   },
-  tagihan_content: {
-    height: 210,
+tagihan_content: {
+    height: 150,
     marginTop: 35,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -519,6 +542,7 @@ const styles = StyleSheet.create({
   text_nom: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: '#2B3467',
     alignSelf: 'center'
   }
 
@@ -528,31 +552,26 @@ const stylesDetailList = StyleSheet.create({
   main: {
     backgroundColor: '#FFFFFF',
   },
-
-  container: {
-    alignItems: 'center',
-  },
-
   infromasi: {
-    width: 380,
+    width: 312,
     flexDirection: 'column',
     alignItems: 'center',
   },
 
   upload_content: {
     flexDirection: 'column',
-    marginLeft: 30
   },
 
   bg_upload: {
     width: 314,
     height: 217,
-    marginTop: 14,
+    marginTop: 12,
   },
 
   icon_bukti_bayar: {
     width: 100,
     height: 90,
+    borderRadius: 5,
     alignSelf: 'center',
     marginTop: 68
   },
@@ -576,7 +595,7 @@ const stylesDetailList = StyleSheet.create({
     justifyContent: 'center',
     textAlignVertical: 'center',
     marginLeft: 30,
-    marginTop: 47
+    marginTop: 32
   }
 
 

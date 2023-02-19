@@ -58,88 +58,81 @@ export default function InformasiAkun() {
                 </View>
               </View>
             </View>
-            <View style={styles.infromasi}>
+            <View style={styles.informasi}>
               <Text style={{
-                width: 380,
+                width: 340,
                 marginTop: 14,
                 color: '#999999',
                 fontSize: 13,
                 letterSpacing: 0.76,
                 textAlign: 'left',
-                paddingLeft: 38
               }}>Infromasi Akun</Text>
       
               <Text style={{
-                width: 380,
+                width: 340,
                 marginTop: 14,
                 color: 'black',
                 fontSize: 13,
                 textAlign: 'left',
-                paddingLeft: 48,
                 fontWeight: 'bold',
               }}>Nama</Text>
               
               <TextInput editable={false} value={data.nama_lengkap} label="Nama"
               style={{
-                width:380,
+                width:340,
                 height: 40,
                 borderRadius:88,
                 backgroundColor:'#E9E9E9',
                 color:'#757171',
                 paddingLeft:23,
-                marginTop:11,
+                marginTop:12,
                 fontSize:13,
                 fontWeight:'light',
-                marginBottom:16,
-                marginLeft:35
+                marginBottom:4,
               }}/>
               <Text style={{
-                width: 380,
+                width: 340,
                 marginTop: 14,
                 color: 'black',
                 fontSize: 13,
                 textAlign: 'left',
-                paddingLeft: 48,
                 fontWeight: 'bold',
-              }}>Nama</Text>
+              }}>Email</Text>
               
               <TextInput editable={false} value={data.email} label="Email"
               style={{
-                width:380,
+                width:340,
                 height: 40,
                 borderRadius:88,
                 backgroundColor:'#E9E9E9',
                 color:'#757171',
                 paddingLeft:23,
-                marginTop:11,
+                marginTop:12,
                 fontSize:13,
                 fontWeight:'light',
-                marginBottom:16,
-                marginLeft:35
+                marginBottom:4,
               }}/>
               <Text style={{
-                width: 380,
+                width: 340,
                 marginTop: 14,
                 color: 'black',
                 fontSize: 13,
                 textAlign: 'left',
-                paddingLeft: 48,
                 fontWeight: 'bold',
               }}>Angkatan</Text>
               
               <TextInput editable={false} value={`${data.angkatan}`} label="angkatan"
               style={{
-                width:380,
+                width:340,
                 height: 40,
                 borderRadius:88,
                 backgroundColor:'#E9E9E9',
                 color:'#757171',
                 paddingLeft:23,
-                marginTop:11,
+                marginTop:12,
                 fontSize:13,
                 fontWeight:'light',
-                marginBottom:16,
-                marginLeft:35,
+                marginBottom:4,
               }}/>
             </View>
           </View>
@@ -148,6 +141,8 @@ export default function InformasiAkun() {
       
       const styles = StyleSheet.create({
         main: {
+          width: '100%',
+          height: '100%',          
           backgroundColor: '#FFFFFF',
         },
       
@@ -172,8 +167,9 @@ export default function InformasiAkun() {
           flexDirection: 'row',
         },
       
-        infromasi: {
-          width: 380,
+        informasi: {
+          width: 340,
+          alignSelf: 'center',
           flexDirection: 'column',
           alignItems: 'center',
         },

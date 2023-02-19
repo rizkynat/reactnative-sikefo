@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
-export default function Profile(){
-  
+export default function Profile() {
+
   const [user, setUser] = useState([]);
 
   const navigation = useNavigation()
@@ -27,13 +27,11 @@ export default function Profile(){
 
   }, [])
   const data = user
-  console
-  console.log(data)
-    return (
-      <View style={styles.main}>
+  return (
+    <View style={styles.main}>
       <View style={styles.container}>
         <View style={styles.profile}>
-          <Image source={{uri: `${data.picture_url}`}} style={{
+          <Image source={{ uri: `${data.picture_url}` }} style={{
             width: 148,
             height: 154,
             borderRadius: 100,
@@ -66,64 +64,75 @@ export default function Profile(){
       </View>
       <View style={styles.pengaturan}>
         <Text style={{
-          width: 380,
+          width: 340,
           marginTop: 14,
           color: '#999999',
           fontSize: 13,
           letterSpacing: 0.76,
-          textAlign: 'left',
-          paddingLeft: 38
         }}>Pengaturan Akun</Text>
-          <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('InformasiAkun')}>
-            <Text style={{
-              color: 'black',
-              fontSize: 14,
-              letterSpacing: 0.15,
-              textAlign: 'left',
-              marginRight:18,
-              
-              paddingBottom:12,
-            }}>Informasi Akun</Text>
-            <Image source={require('../../assets/panah.png')} style={{
-              width: 7.41,
-              height: 12,
-              marginLeft:240,
-              marginTop:6,
-            }} />
-          </TouchableOpacity>
-                    <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('About')}>
-            <Text style={{
-              color: 'black',
-              fontSize: 14,
-              letterSpacing: 0.15,
-              textAlign: 'left',
-              marginRight:18,
-              paddingBottom:12,
-            }}>Tentang</Text>
-            <Image source={require('../../assets/panah.png')} style={{
-              width: 7.41,
-              height: 12,
-              marginLeft:289,
-              marginTop:6,
-              paddingBottom:12,
-            }} />
-          </TouchableOpacity>
-                    <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('Logout')} >
-            <Text style={{
-              color: 'black',
-              fontSize: 14,
-              letterSpacing: 0.15,
-              textAlign: 'left',
-              marginRight:18,
-              paddingBottom:12,
-            }}>Keluar</Text>
-            <Image source={require('../../assets/panah.png')} style={{
-              width: 7.41,
-              height: 12,
-              marginLeft:301,
-              marginTop:6,
-            }} />
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('InformasiAkun')}>
+          <Text style={{
+            color: 'black',
+            fontSize: 14,
+            flex: 1,
+            letterSpacing: 0.15,
+            textAlign: 'left',
+
+            paddingBottom: 12,
+          }}>Informasi Akun</Text>
+          <Image source={require('../../assets/panah.png')} style={{
+            width: 7.41,
+            height: 12,
+            marginTop: 6,
+          }} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('About')}>
+          <Text style={{
+            color: 'black',
+            fontSize: 14,
+            flex: 1,
+            letterSpacing: 0.15,
+            textAlign: 'left',
+            paddingBottom: 12,
+          }}>Tentang</Text>
+          <Image source={require('../../assets/panah.png')} style={{
+            width: 7.41,
+            height: 12,
+            marginTop: 6,
+            paddingBottom: 12,
+          }} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('Configuration')}>
+          <Text style={{
+            color: 'black',
+            fontSize: 14,
+            flex: 1,
+            letterSpacing: 0.15,
+            textAlign: 'left',
+            paddingBottom: 12,
+          }}>Konfigurasi</Text>
+          <Image source={require('../../assets/panah.png')} style={{
+            width: 7.41,
+            height: 12,
+            marginTop: 6,
+            paddingBottom: 12,
+          }} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navigation} onPress={() => navigation.navigate('Logout')} >
+          <Text style={{
+            color: 'black',
+            fontSize: 14,
+            flex: 1,
+            letterSpacing: 0.15,
+            textAlign: 'left',
+            paddingBottom: 12,
+          }}>Keluar</Text>
+          <Image source={require('../../assets/panah.png')} style={{
+            width: 7.41,
+            height: 12, 
+            marginTop: 6,
+          }} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -131,6 +140,8 @@ export default function Profile(){
 
 const styles = StyleSheet.create({
   main: {
+    width: '100%',
+    height: '100%',
     backgroundColor: '#FFFFFF',
   },
 
@@ -156,17 +167,15 @@ const styles = StyleSheet.create({
   },
 
   pengaturan: {
-    width: 380,
+    width: 340,
+    alignSelf: 'center',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
-  navigation:{
-    
-    alignSelf: 'center',
+  navigation: {
     marginTop: 24,
-    width: 380,
-    marginLeft:38,
+    width: 340,
     flexDirection: 'row',
     borderBottomColor: '#D1D1D6',
     borderBottomWidth: StyleSheet.hairlineWidth

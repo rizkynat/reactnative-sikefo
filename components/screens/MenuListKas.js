@@ -101,7 +101,7 @@ export default function MenuListKas(props) {
             keyExtractor={({ id_kas }, index) => id_kas}
             renderItem={({ item }) => (
               <View style={styles.data}>
-                <Image  source={require('./../../assets/arrow_in.png')} style={styles.icon_in} />
+                <Image  source={require('./../../assets/payment.png')} style={styles.icon_in} />
                 <Text style={styles.text_desc}>{item.keterangan} </Text>
                 <Text style={styles.text_nom}>Rp.{rupiah(item.nominal)}</Text>
               </View>
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     text_nom: {
         fontSize: 14,
         fontWeight: 'bold',
+        color: '#2B3467',
         alignSelf:'center'
     },dropdown: {
         height: 50,

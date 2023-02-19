@@ -11,6 +11,7 @@ import Profile from './components/screens/Profile';
 import About from './components/screens/About';
 import Logout from './components/screens/Logout';
 import InformasiAkun from './components/screens/InformasiAkun';
+import Configuration from './components/screens/Configuration';
 import DetailList from './components/screens/DetailList';
 
 const AppStack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ export default function App() {
           <AppStack.Screen name="About" component={About} options={{title: "Tentang"}}/>
           <AppStack.Screen name="Logout" component={Logout} options={{headerShown: false}}/>
           <AppStack.Screen name="InformasiAkun" component={InformasiAkun} options={{title: "Informasi Akun"}}/>
+          <AppStack.Screen name="Configuration" component={Configuration} options={{title: "Konfigurasi"}}/>
           <AppStack.Screen name="DetailList" component={DetailList} options={{title: "Detail Kas"}}/>
         </AppStack.Navigator>
       </NavigationContainer>
