@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity, CheckBox, ScrollView, FlatList, Modal, TextInput } from 'react-native';
 import { useEffect, useState } from 'react';
 import Constants from 'expo-constants';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // or any pure javascript modules available in npm
 import { IconButton, MD3Colors, Button, Menu, Divider, Provider } from 'react-native-paper';
@@ -13,6 +13,7 @@ import Upload from './DetailList';
 
 export default function Beranda(props) {
 
+  const [baseConfig, setBaseConfig] = useState('')
   const [showModal, setShowModal] = useState(false);
   const [activeItem, setActiveItem] = React.useState(null);
 
@@ -31,7 +32,6 @@ export default function Beranda(props) {
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
-  console.log(visible)
   const rupiah = (bilangan) => {
     var number_string = bilangan.toString(),
       sisa = number_string.length % 3,
@@ -76,12 +76,21 @@ export default function Beranda(props) {
 
   }
 
+  const getBaseConfig = async () => {
+    try{      
+      const BaseConfig = JSON.parse(await AsyncStorage.getItem("base_config"))
+      setBaseConfig(BaseConfig)
+      console.log(baseConfig)
+    }catch (error) {
+      console.log(error); 
+     }
+  }
   const getDataKas = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/api/kas`);
+      const BaseConfig = JSON.parse(await AsyncStorage.getItem("base_config"))
+      const response = await fetch(`${BaseConfig}/api/kas`);
       const json = await response.json();
       setData(json.data);
-      console.log(json.data)
     } catch (error) {
       console.error(error);
     }
@@ -89,10 +98,10 @@ export default function Beranda(props) {
 
   const getDataSummary = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/api/summary`);
+      const BaseConfig = JSON.parse(await AsyncStorage.getItem("base_config"))
+      const response = await fetch(`${BaseConfig}/api/summary`);
       const json = await response.json();
       setSummary(json.data);
-      console.log(json.data)
     } catch (error) {
       console.error(error);
     }
@@ -202,7 +211,6 @@ export default function Beranda(props) {
                       transparent={false}
                       visible={showModal}
                       onRequestClose={() => {
-                        console.log('Modal has been closed.');
                       }}>
                       {/*All views of Modal*/}
                       {/*Animation can be slide, slide, none*/}
@@ -294,7 +302,7 @@ export default function Beranda(props) {
                               <View style={stylesDetailList.upload_content}>
                                 <TouchableOpacity>
                                   <ImageBackground source={require('../../assets/border-upload.png')} resizeMode="cover" style={stylesDetailList.bg_upload}>
-                                    <Image source={{uri: `${BASE_URL}/storage/kas/${activeItem?.bukti_bayar}`}} style={stylesDetailList.icon_bukti_bayar} />
+                                    <Image source={{uri: `${baseConfig}/storage/kas/${activeItem?.bukti_bayar}`}} style={stylesDetailList.icon_bukti_bayar} />
                                   </ImageBackground>
                                 </TouchableOpacity>
                               </View>
@@ -305,7 +313,7 @@ export default function Beranda(props) {
                       </View>
                     </Modal>
 
-                    <TouchableOpacity key={key}  onPress={() => { onPress(item) }}>
+                    <TouchableOpacity key={key}  onPress={() => { onPress(item), getBaseConfig() }}>
                       <View  style={styles.data}>
                         <Image source={require('./../../assets/payment.png')} style={styles.icon_in} />
                         <Text style={styles.text_desc}>{item.keterangan} </Text>

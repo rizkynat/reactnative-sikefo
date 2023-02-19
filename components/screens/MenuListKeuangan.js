@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity, CheckBox, FlatList } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { IconButton, MD3Colors, Button, Menu, Divider, Provider, ActivityIndicator } from 'react-native-paper';
-import { BASE_URL } from './Config';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const bulan = [
     { label: 'Semua', value: 'Semua' },
     { label: 'Uang Masuk', value: 'Uang Masuk' },
@@ -35,7 +34,8 @@ export default function MenuListKeuangan(props) {
   
     const getDataKeuangan = async () => {
        try {
-        const response = await fetch(`${BASE_URL}/api/keuangan`);
+        const BaseConfig = JSON.parse(await AsyncStorage.getItem("base_config"))
+        const response = await fetch(`${BaseConfig}/api/keuangan`);
         const json = await response.json();
         setData(json.data);
         console.log(json.data)
